@@ -1,0 +1,21 @@
+ Link {
+  text-decoration: none;
+}
+ 
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* This will ensure that the loader covers the full height of the viewport. */
+}
+
+
+.thumbnail-img{
+  height: 180px;
+  width: 320px;
+}
+
+.thumbnail{
+  aspect-ratio: 16 / 9;
+}
