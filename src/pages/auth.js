@@ -9,6 +9,7 @@ export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Msg, setMsg] = useState("");
+  const apiURL = "https://blog-server-mauve-seven.vercel.app";
 
   const handleFormTypeChange = (type) => {
     setEmail("");
@@ -19,7 +20,8 @@ export const Auth = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    let link = "https://blog2-0-server.onrender.com/auth/" + formType;
+
+    let link = `${apiURL}/auth/` + formType;
     console.log(formBody);
     console.log(link);
     try {

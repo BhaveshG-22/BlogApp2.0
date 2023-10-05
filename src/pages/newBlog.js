@@ -7,6 +7,7 @@ import { v4 } from "uuid";
 import { Container, Form, Button } from "react-bootstrap";
 import { getUsername } from "../helpers/getUsername.js";
 import axios from "axios";
+const apiURL = "https://blog-server-mauve-seven.vercel.app";
 
 export const NewBlog = () => {
   // const [value, setValue] = useState("**Hello world!!!**");
@@ -38,12 +39,9 @@ export const NewBlog = () => {
   async function handelSave(data) {
     console.log(data);
     try {
-      const save = await axios.post(
-        "https://blog2-0-server.onrender.com/data/newBlog",
-        {
-          data,
-        }
-      );
+      const save = await axios.post(`${apiURL}/data/newBlog`, {
+        data,
+      });
       console.log("successfully saved");
       setMsg({ data: "Saved Successfully", success: true });
     } catch (error) {

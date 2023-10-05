@@ -11,6 +11,7 @@ import { getBlog } from "../helpers/getBlog.js";
 import { storage } from "../firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+const apiURL = "https://blog-server-mauve-seven.vercel.app";
 
 export const Edit = () => {
   const [username, setUsername] = useState("");
@@ -60,12 +61,9 @@ export const Edit = () => {
   async function handelSave(data) {
     console.log(data);
     try {
-      const save = await axios.put(
-        `https://blog2-0-server.onrender.com/data/editBlog/${id}`,
-        {
-          data,
-        }
-      );
+      const save = await axios.put(`${apiURL}/data/editBlog/${id}`, {
+        data,
+      });
       console.log("successfully saved");
       setMsg({ data: "Saved Successfully", success: true });
     } catch (error) {

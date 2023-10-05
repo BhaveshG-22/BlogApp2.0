@@ -1,15 +1,13 @@
 import axios from "axios";
+const apiURL = "https://blog-server-mauve-seven.vercel.app";
 
 async function getData() {
   const token = localStorage.getItem("token");
 
   try {
-    const data = await axios.get(
-      "https://blog2-0-server.onrender.com/data/getUserData",
-      {
-        headers: { token },
-      }
-    );
+    const data = await axios.get(`${apiURL}/data/getUserData`, {
+      headers: { token },
+    });
 
     return data;
   } catch (error) {

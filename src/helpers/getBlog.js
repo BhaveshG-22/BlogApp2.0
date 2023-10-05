@@ -1,8 +1,8 @@
 import axios from "axios";
 export const getBlog = async (id) => {
-  const blogData = await axios.get(
-    `https://blog2-0-server.onrender.com/data/blog/${id}`
-  );
+  const apiURL = "https://blog-server-mauve-seven.vercel.app";
+
+  const blogData = await axios.get(`${apiURL}/data/blog/${id}`);
   console.log(blogData.data.Blog);
   return blogData.data.Blog;
 };

@@ -10,9 +10,13 @@ export const RenderedBlogs = () => {
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
+  const apiURL = "https://blog-server-mauve-seven.vercel.app";
+
   useEffect(() => {
     axios
-      .get("https://blog2-0-server.onrender.com/data/getAllBlogs")
+      // .get("https://blog2-0-server.onrender.com/data/getAllBlogs")
+      // .get("https://blog-server-mauve-seven.vercel.app/data/getAllBlogs")
+      .get(`${apiURL}/data/getAllBlogs`)
       .then((response) => {
         console.log(response.data.Blogs);
         setBlogs(response.data.Blogs);
@@ -42,7 +46,7 @@ export const RenderedBlogs = () => {
 
     // Make the DELETE request with the headers
     axios
-      .delete("https://blog2-0-server.onrender.com/data/editBlog/" + id, {
+      .delete(`${apiURL}/data/editBlog/` + id, {
         headers,
       })
       .then((response) => {
