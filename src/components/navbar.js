@@ -32,8 +32,8 @@ export const ComponentNavbar = () => {
 
   return (
     <Navbar bg="dark" data-bs-theme="dark">
-      <Container className="h-10 lead lead-text">
-        <Link className="navbar-brand text-white" to="/">
+      <Container className="h-10 lead lead-text ml-auto">
+        <Link className="navbar-brand text-white " to="/">
           Home
         </Link>
         <Nav className="ml-auto">
