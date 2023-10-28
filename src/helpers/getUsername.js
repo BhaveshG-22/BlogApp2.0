@@ -1,10 +1,14 @@
 import axios from "axios";
-const apiURL = "https://blog-server-mauve-seven.vercel.app";
+import getApiLink from "../api";
+// const apiURL = "blog-server-cstqow679-bhaveshg-22.vercel.app";
+const apiURL = getApiLink();
+console.log(apiURL);
 
 async function getData() {
   const token = localStorage.getItem("token");
 
   try {
+    console.log(`${apiURL}/data/getUserData`);
     const data = await axios.get(`${apiURL}/data/getUserData`, {
       headers: { token },
     });

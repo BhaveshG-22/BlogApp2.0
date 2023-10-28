@@ -32,17 +32,25 @@ export const ComponentNavbar = () => {
 
   return (
     <Navbar bg="dark" data-bs-theme="dark">
-      <Container>
-        <Link className="navbar-brand" to="/">
+      <Container className="h-10 lead lead-text">
+        <Link className="navbar-brand text-white" to="/">
           Home
         </Link>
         <Nav className="ml-auto">
-          <Link className="navbar-brand" to="/newBlog">
+          <Link className="navbar-brand text-white" to="/newBlog">
             Create New
           </Link>
           {renderAuthLink()}
-          <Link className="navbar-brand" to="/profile">
-            <img src={Logo} alt="Profile Icon" />
+          <Link
+            className="navbar-brand rounded avatar text-bg-secondary rounded-circle"
+            to="/profile"
+          >
+            <div
+              className="text-white d-flex justify-content-center align-items-center"
+              style={{ width: "40px", height: "30px" }}
+            >
+              <img src={Logo} alt="Profile Icon" />
+            </div>
           </Link>
         </Nav>
       </Container>

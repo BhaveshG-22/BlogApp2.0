@@ -1,6 +1,10 @@
  Link {
   text-decoration: none;
 }
+
+html{
+  font-size: large;
+}
  
 
 .centered {

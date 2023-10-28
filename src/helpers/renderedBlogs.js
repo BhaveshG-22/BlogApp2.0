@@ -4,18 +4,20 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../helpers/getUsername";
 import { Loader } from "../components/loader";
+import getApiLink from "../api";
 
 export const RenderedBlogs = () => {
   const [blogs, setBlogs] = useState(null);
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
-  const apiURL = "https://blog-server-mauve-seven.vercel.app";
+  // const apiURL = "blog-server-cstqow679-bhaveshg-22.vercel.app";
+  const apiURL = getApiLink();
+  console.log(apiURL);
 
   useEffect(() => {
     axios
-      // .get("https://blog2-0-server.onrender.com/data/getAllBlogs")
-      // .get("https://blog-server-mauve-seven.vercel.app/data/getAllBlogs")
+
       .get(`${apiURL}/data/getAllBlogs`)
       .then((response) => {
         console.log(response.data.Blogs);
@@ -88,14 +90,29 @@ export const RenderedBlogs = () => {
                       style={{ textDecoration: "none" }}
                     >
                       <h5 className="card-title mb-0">{blog.title}</h5>
-                      <p className="card-text mb-1">
-                        {blog.description.length < 25
-                          ? blog.description
-                          : blog.description.slice(0, 24) + " ..."}
-                      </p>
-                      <p className="card-subtitle mb-2 text-muted">
-                        {blog.username}
-                      </p>
+                      {userName !== blog.username ? (
+                        <>
+                          <p className="card-text mb-1 mt-3">
+                            {blog.description.length < 85
+                              ? blog.description
+                              : blog.description.slice(0, 84) + " ..."}
+                          </p>
+                          <p className="card-subtitle mb-0 text-muted mt-auto align-self-end">
+                            {blog.username}
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="card-text mb-1">
+                            {blog.description.length < 35
+                              ? blog.description
+                              : blog.description.slice(0, 34) + " ..."}
+                          </p>
+                          <p className="card-subtitle mb-2 text-muted">
+                            {blog.username}
+                          </p>
+                        </>
+                      )}
                     </Link>
                     <div className="mt-auto">
                       {userName === blog.username && (

@@ -11,7 +11,11 @@ import { getBlog } from "../helpers/getBlog.js";
 import { storage } from "../firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
-const apiURL = "https://blog-server-mauve-seven.vercel.app";
+import getApiLink from "../api";
+
+// const apiURL = "blog-server-cstqow679-bhaveshg-22.vercel.app";
+const apiURL = getApiLink();
+console.log(apiURL);
 
 export const Edit = () => {
   const [username, setUsername] = useState("");
@@ -19,9 +23,11 @@ export const Edit = () => {
   const [Msg, setMsg] = useState("");
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
-  const [thumbnailUrl, setThumbnailUrl] = useState(
-    "data:image/jpeg;base64,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"
-  );
+
+  const initialThumbnail =
+    "data:image/jpeg;base64,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";
+
+  const [thumbnailUrl, setThumbnailUrl] = useState(initialThumbnail);
   const [LoaderState, setLoaderState] = useState(true);
 
   const navigate = useNavigate();
@@ -38,7 +44,7 @@ export const Edit = () => {
       setLoaderState(false);
     }
     fetchBlog();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     async function fetchUsername() {
@@ -47,7 +53,7 @@ export const Edit = () => {
     }
     fetchUsername();
     console.log(username);
-  }, []);
+  }, [username]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +67,7 @@ export const Edit = () => {
   async function handelSave(data) {
     console.log(data);
     try {
-      const save = await axios.put(`${apiURL}/data/editBlog/${id}`, {
+      await axios.put(`${apiURL}/data/editBlog/${id}`, {
         data,
       });
       console.log("successfully saved");
@@ -128,11 +134,6 @@ export const Edit = () => {
         ) : (
           <div className="d-flex align-items-center justify-content-center">
             <h1 className="mb-4">Edit Article</h1>
-            {username ? (
-              <p className="ms-3">{username}</p>
-            ) : (
-              <p className="ms-3"> Loading...</p>
-            )}
           </div>
         )}
 
@@ -152,13 +153,13 @@ export const Edit = () => {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
-                rows={3}
+                rows={10}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
           </div>
-          <div className="col-md-6 gap-3">
+          {/* <div className="col-md-6 gap-3">
             <div className="thumbnail-container text-center">
               <img
                 className="thumbnail-img"
@@ -172,6 +173,49 @@ export const Edit = () => {
                   await uploadImage(event.target.files[0]);
                 }}
               />
+            </div>
+          </div> */}
+          <div className="col-md-6 gap-3">
+            <div className="thumbnail-container text-center d-flex flex-column align-items-center">
+              <img
+                className="thumbnail-img mb-2"
+                src={thumbnailUrl}
+                alt="Uploaded"
+              />
+              <div>
+                <div>
+                  <label
+                    for="formFile"
+                    class={`form-label mb-2 ${
+                      thumbnailUrl !== initialThumbnail ? "d-none" : ""
+                    } `}
+                  ></label>
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="formFile"
+                    onChange={async (event) => {
+                      await uploadImage(event.target.files[0]);
+                    }}
+                  />
+                </div>
+
+                <div className="p-3">OR</div>
+
+                <div class="input-group mb-3 ">
+                  <input
+                    type="text"
+                    id="ThubnailURL"
+                    class="form-control"
+                    placeholder="Enter Thumbnail URL"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    onChange={(e) => {
+                      setThumbnailUrl(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

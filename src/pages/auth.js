@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import getApiLink from "../api";
 
 export const Auth = () => {
   const navigate = useNavigate();
@@ -9,7 +10,10 @@ export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Msg, setMsg] = useState("");
-  const apiURL = "https://blog-server-mauve-seven.vercel.app";
+
+  // const apiURL = "blog-server-cstqow679-bhaveshg-22.vercel.app";
+  const apiURL = getApiLink();
+  console.log(apiURL);
 
   const handleFormTypeChange = (type) => {
     setEmail("");
@@ -101,6 +105,7 @@ export const Auth = () => {
                   </div>
                 )}
                 <br />
+
                 <div className="form-group d-flex align-items-center">
                   <div className="input-group">
                     <div className="input-group-prepend">
@@ -162,6 +167,21 @@ export const Auth = () => {
                 )}
                 <div className="form-group">
                   <br />
+
+                  {formType === "login" && (
+                    <div className="form-group d-flex w-100 align-items-center justify-content-center">
+                      <button
+                        type="button"
+                        className="btn btn-danger w-100"
+                        onClick={() => {
+                          setEmail("test@test1.com");
+                          setPassword("Coronavirus");
+                        }}
+                      >
+                        Use Test Login Credentials
+                      </button>
+                    </div>
+                  )}
                   <button type="submit" className="btn btn-primary btn-block">
                     {formType === "login" ? (
                       <>
