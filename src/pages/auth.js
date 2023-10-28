@@ -53,7 +53,7 @@ export const Auth = () => {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6" style={{ maxWidth: "400px" }}>
-          <div className="card bg-light">
+          <div className="card bg-dark">
             <div className="card-body">
               <h5 className="card-title text-center mb-4">
                 {formType === "login" ? "Login" : "Sign Up"}
