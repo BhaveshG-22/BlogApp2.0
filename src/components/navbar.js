@@ -31,7 +31,7 @@ export const ComponentNavbar = () => {
   };
 
   return (
-    <Navbar bg="dark" data-bs-theme="dark">
+    <Navbar expand="lg" className="bg-body-tertiary">
       <Container className="h-10 lead lead-text ml-auto">
         <Link className="navbar-brand text-white " to="/">
           Home
